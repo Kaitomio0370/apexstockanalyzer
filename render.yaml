@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: apex-stock-analyzer
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      # Add these in the Render dashboard (keep secret):
+      # FMP_KEY, AV_KEY, NEWS_KEY, CLAUDE_KEY, DATABASE_URL
